@@ -95,13 +95,13 @@ export class DocumentHighlight {
 }
 export class FileHandle {
   private constructor();
-/**
-** Return copy of self without private attributes.
-*/
+  /**
+   ** Return copy of self without private attributes.
+   */
   toJSON(): Object;
-/**
-* Return stringified version of self.
-*/
+  /**
+   * Return stringified version of self.
+   */
   toString(): string;
   free(): void;
   toString(): string;
@@ -239,8 +239,14 @@ export class Workspace {
   inlayHints(file_id: FileHandle, range: Range): InlayHint[];
   semanticTokens(file_id: FileHandle): SemanticToken[];
   semanticTokensInRange(file_id: FileHandle, range: Range): SemanticToken[];
-  signatureHelp(file_id: FileHandle, position: Position): SignatureHelp | undefined;
-  documentHighlights(file_id: FileHandle, position: Position): DocumentHighlight[];
+  signatureHelp(
+    file_id: FileHandle,
+    position: Position,
+  ): SignatureHelp | undefined;
+  documentHighlights(
+    file_id: FileHandle,
+    position: Position,
+  ): DocumentHighlight[];
   /**
    * Gets a file handle for a vendored file by its path.
    * This allows vendored files to participate in LSP features like hover, completions, etc.
@@ -248,36 +254,119 @@ export class Workspace {
   getVendoredFile(path: string): FileHandle;
 }
 
-export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
+export type InitInput =
+  | RequestInfo
+  | URL
+  | Response
+  | BufferSource
+  | WebAssembly.Module;
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly version: () => [number, number];
   readonly run: () => void;
   readonly __wbg_workspace_free: (a: number, b: number) => void;
-  readonly workspace_new: (a: number, b: number, c: number, d: any) => [number, number, number];
+  readonly workspace_new: (
+    a: number,
+    b: number,
+    c: number,
+    d: any,
+  ) => [number, number, number];
   readonly workspace_updateOptions: (a: number, b: any) => [number, number];
-  readonly workspace_openFile: (a: number, b: number, c: number, d: number, e: number) => [number, number, number];
-  readonly workspace_updateFile: (a: number, b: number, c: number, d: number) => [number, number];
+  readonly workspace_openFile: (
+    a: number,
+    b: number,
+    c: number,
+    d: number,
+    e: number,
+  ) => [number, number, number];
+  readonly workspace_updateFile: (
+    a: number,
+    b: number,
+    c: number,
+    d: number,
+  ) => [number, number];
   readonly workspace_closeFile: (a: number, b: number) => [number, number];
-  readonly workspace_checkFile: (a: number, b: number) => [number, number, number, number];
+  readonly workspace_checkFile: (
+    a: number,
+    b: number,
+  ) => [number, number, number, number];
   readonly workspace_check: (a: number) => [number, number, number, number];
-  readonly workspace_parsed: (a: number, b: number) => [number, number, number, number];
-  readonly workspace_format: (a: number, b: number) => [number, number, number, number];
-  readonly workspace_tokens: (a: number, b: number) => [number, number, number, number];
-  readonly workspace_sourceText: (a: number, b: number) => [number, number, number, number];
-  readonly workspace_gotoTypeDefinition: (a: number, b: number, c: number) => [number, number, number, number];
-  readonly workspace_gotoDeclaration: (a: number, b: number, c: number) => [number, number, number, number];
-  readonly workspace_gotoDefinition: (a: number, b: number, c: number) => [number, number, number, number];
-  readonly workspace_gotoReferences: (a: number, b: number, c: number) => [number, number, number, number];
-  readonly workspace_hover: (a: number, b: number, c: number) => [number, number, number];
-  readonly workspace_completions: (a: number, b: number, c: number) => [number, number, number, number];
-  readonly workspace_inlayHints: (a: number, b: number, c: number) => [number, number, number, number];
-  readonly workspace_semanticTokens: (a: number, b: number) => [number, number, number, number];
-  readonly workspace_semanticTokensInRange: (a: number, b: number, c: number) => [number, number, number, number];
-  readonly workspace_signatureHelp: (a: number, b: number, c: number) => [number, number, number];
-  readonly workspace_documentHighlights: (a: number, b: number, c: number) => [number, number, number, number];
-  readonly workspace_getVendoredFile: (a: number, b: number, c: number) => [number, number, number];
+  readonly workspace_parsed: (
+    a: number,
+    b: number,
+  ) => [number, number, number, number];
+  readonly workspace_format: (
+    a: number,
+    b: number,
+  ) => [number, number, number, number];
+  readonly workspace_tokens: (
+    a: number,
+    b: number,
+  ) => [number, number, number, number];
+  readonly workspace_sourceText: (
+    a: number,
+    b: number,
+  ) => [number, number, number, number];
+  readonly workspace_gotoTypeDefinition: (
+    a: number,
+    b: number,
+    c: number,
+  ) => [number, number, number, number];
+  readonly workspace_gotoDeclaration: (
+    a: number,
+    b: number,
+    c: number,
+  ) => [number, number, number, number];
+  readonly workspace_gotoDefinition: (
+    a: number,
+    b: number,
+    c: number,
+  ) => [number, number, number, number];
+  readonly workspace_gotoReferences: (
+    a: number,
+    b: number,
+    c: number,
+  ) => [number, number, number, number];
+  readonly workspace_hover: (
+    a: number,
+    b: number,
+    c: number,
+  ) => [number, number, number];
+  readonly workspace_completions: (
+    a: number,
+    b: number,
+    c: number,
+  ) => [number, number, number, number];
+  readonly workspace_inlayHints: (
+    a: number,
+    b: number,
+    c: number,
+  ) => [number, number, number, number];
+  readonly workspace_semanticTokens: (
+    a: number,
+    b: number,
+  ) => [number, number, number, number];
+  readonly workspace_semanticTokensInRange: (
+    a: number,
+    b: number,
+    c: number,
+  ) => [number, number, number, number];
+  readonly workspace_signatureHelp: (
+    a: number,
+    b: number,
+    c: number,
+  ) => [number, number, number];
+  readonly workspace_documentHighlights: (
+    a: number,
+    b: number,
+    c: number,
+  ) => [number, number, number, number];
+  readonly workspace_getVendoredFile: (
+    a: number,
+    b: number,
+    c: number,
+  ) => [number, number, number];
   readonly __wbg_filehandle_free: (a: number, b: number) => void;
   readonly filehandle_toString: (a: number) => [number, number];
   readonly filehandle_path: (a: number) => [number, number];
@@ -302,13 +391,23 @@ export interface InitOutput {
   readonly __wbg_textrange_free: (a: number, b: number) => void;
   readonly __wbg_locationlink_free: (a: number, b: number) => void;
   readonly __wbg_get_locationlink_path: (a: number) => [number, number];
-  readonly __wbg_set_locationlink_path: (a: number, b: number, c: number) => void;
+  readonly __wbg_set_locationlink_path: (
+    a: number,
+    b: number,
+    c: number,
+  ) => void;
   readonly __wbg_get_locationlink_full_range: (a: number) => number;
   readonly __wbg_set_locationlink_full_range: (a: number, b: number) => void;
   readonly __wbg_get_locationlink_selection_range: (a: number) => number;
-  readonly __wbg_set_locationlink_selection_range: (a: number, b: number) => void;
+  readonly __wbg_set_locationlink_selection_range: (
+    a: number,
+    b: number,
+  ) => void;
   readonly __wbg_get_locationlink_origin_selection_range: (a: number) => number;
-  readonly __wbg_set_locationlink_origin_selection_range: (a: number, b: number) => void;
+  readonly __wbg_set_locationlink_origin_selection_range: (
+    a: number,
+    b: number,
+  ) => void;
   readonly __wbg_hover_free: (a: number, b: number) => void;
   readonly __wbg_get_hover_markdown: (a: number) => [number, number];
   readonly __wbg_get_hover_range: (a: number) => number;
@@ -319,9 +418,17 @@ export interface InitOutput {
   readonly __wbg_get_completion_kind: (a: number) => number;
   readonly __wbg_set_completion_kind: (a: number, b: number) => void;
   readonly __wbg_get_completion_documentation: (a: number) => [number, number];
-  readonly __wbg_set_completion_documentation: (a: number, b: number, c: number) => void;
+  readonly __wbg_set_completion_documentation: (
+    a: number,
+    b: number,
+    c: number,
+  ) => void;
   readonly __wbg_get_completion_detail: (a: number) => [number, number];
-  readonly __wbg_set_completion_detail: (a: number, b: number, c: number) => void;
+  readonly __wbg_set_completion_detail: (
+    a: number,
+    b: number,
+    c: number,
+  ) => void;
   readonly __wbg_inlayhint_free: (a: number, b: number) => void;
   readonly __wbg_get_inlayhint_markdown: (a: number) => [number, number];
   readonly __wbg_get_inlayhint_position: (a: number) => number;
@@ -335,18 +442,45 @@ export interface InitOutput {
   readonly __wbg_set_semantictoken_range: (a: number, b: number) => void;
   readonly __wbg_signaturehelp_free: (a: number, b: number) => void;
   readonly __wbg_get_signaturehelp_signatures: (a: number) => [number, number];
-  readonly __wbg_set_signaturehelp_signatures: (a: number, b: number, c: number) => void;
+  readonly __wbg_set_signaturehelp_signatures: (
+    a: number,
+    b: number,
+    c: number,
+  ) => void;
   readonly __wbg_get_signaturehelp_active_signature: (a: number) => number;
-  readonly __wbg_set_signaturehelp_active_signature: (a: number, b: number) => void;
+  readonly __wbg_set_signaturehelp_active_signature: (
+    a: number,
+    b: number,
+  ) => void;
   readonly __wbg_signatureinformation_free: (a: number, b: number) => void;
-  readonly __wbg_get_signatureinformation_label: (a: number) => [number, number];
-  readonly __wbg_set_signatureinformation_label: (a: number, b: number, c: number) => void;
-  readonly __wbg_get_signatureinformation_documentation: (a: number) => [number, number];
-  readonly __wbg_set_signatureinformation_documentation: (a: number, b: number, c: number) => void;
-  readonly __wbg_get_signatureinformation_parameters: (a: number) => [number, number];
-  readonly __wbg_set_signatureinformation_parameters: (a: number, b: number, c: number) => void;
+  readonly __wbg_get_signatureinformation_label: (
+    a: number,
+  ) => [number, number];
+  readonly __wbg_set_signatureinformation_label: (
+    a: number,
+    b: number,
+    c: number,
+  ) => void;
+  readonly __wbg_get_signatureinformation_documentation: (
+    a: number,
+  ) => [number, number];
+  readonly __wbg_set_signatureinformation_documentation: (
+    a: number,
+    b: number,
+    c: number,
+  ) => void;
+  readonly __wbg_get_signatureinformation_parameters: (
+    a: number,
+  ) => [number, number];
+  readonly __wbg_set_signatureinformation_parameters: (
+    a: number,
+    b: number,
+    c: number,
+  ) => void;
   readonly __wbg_parameterinformation_free: (a: number, b: number) => void;
-  readonly __wbg_get_parameterinformation_label: (a: number) => [number, number];
+  readonly __wbg_get_parameterinformation_label: (
+    a: number,
+  ) => [number, number];
   readonly __wbg_documenthighlight_free: (a: number, b: number) => void;
   readonly __wbg_get_documenthighlight_range: (a: number) => number;
   readonly __wbg_get_documenthighlight_kind: (a: number) => number;
@@ -355,19 +489,43 @@ export interface InitOutput {
   readonly __wbg_set_textrange_start: (a: number, b: number) => void;
   readonly __wbg_set_textrange_end: (a: number, b: number) => void;
   readonly __wbg_set_semantictoken_modifiers: (a: number, b: number) => void;
-  readonly __wbg_get_signatureinformation_active_parameter: (a: number) => number;
-  readonly __wbg_set_parameterinformation_documentation: (a: number, b: number, c: number) => void;
-  readonly __wbg_get_parameterinformation_documentation: (a: number) => [number, number];
+  readonly __wbg_get_signatureinformation_active_parameter: (
+    a: number,
+  ) => number;
+  readonly __wbg_set_parameterinformation_documentation: (
+    a: number,
+    b: number,
+    c: number,
+  ) => void;
+  readonly __wbg_get_parameterinformation_documentation: (
+    a: number,
+  ) => [number, number];
   readonly __wbg_set_hover_markdown: (a: number, b: number, c: number) => void;
-  readonly __wbg_set_inlayhint_markdown: (a: number, b: number, c: number) => void;
-  readonly __wbg_set_parameterinformation_label: (a: number, b: number, c: number) => void;
-  readonly __wbg_set_signatureinformation_active_parameter: (a: number, b: number) => void;
+  readonly __wbg_set_inlayhint_markdown: (
+    a: number,
+    b: number,
+    c: number,
+  ) => void;
+  readonly __wbg_set_parameterinformation_label: (
+    a: number,
+    b: number,
+    c: number,
+  ) => void;
+  readonly __wbg_set_signatureinformation_active_parameter: (
+    a: number,
+    b: number,
+  ) => void;
   readonly position_new: (a: number, b: number) => number;
   readonly __wbg_get_textrange_start: (a: number) => number;
   readonly __wbg_get_textrange_end: (a: number) => number;
   readonly __wbg_get_semantictoken_modifiers: (a: number) => number;
   readonly __wbindgen_malloc: (a: number, b: number) => number;
-  readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
+  readonly __wbindgen_realloc: (
+    a: number,
+    b: number,
+    c: number,
+    d: number,
+  ) => number;
   readonly __wbindgen_exn_store: (a: number) => void;
   readonly __externref_table_alloc: () => number;
   readonly __wbindgen_export_4: WebAssembly.Table;
@@ -379,21 +537,28 @@ export interface InitOutput {
 
 export type SyncInitInput = BufferSource | WebAssembly.Module;
 /**
-* Instantiates the given `module`, which can either be bytes or
-* a precompiled `WebAssembly.Module`.
-*
-* @param {{ module: SyncInitInput }} module - Passing `SyncInitInput` directly is deprecated.
-*
-* @returns {InitOutput}
-*/
-export function initSync(module: { module: SyncInitInput } | SyncInitInput): InitOutput;
+ * Instantiates the given `module`, which can either be bytes or
+ * a precompiled `WebAssembly.Module`.
+ *
+ * @param {{ module: SyncInitInput }} module - Passing `SyncInitInput` directly is deprecated.
+ *
+ * @returns {InitOutput}
+ */
+export function initSync(
+  module: { module: SyncInitInput } | SyncInitInput,
+): InitOutput;
 
 /**
-* If `module_or_path` is {RequestInfo} or {URL}, makes a request and
-* for everything else, calls `WebAssembly.instantiate` directly.
-*
-* @param {{ module_or_path: InitInput | Promise<InitInput> }} module_or_path - Passing `InitInput` directly is deprecated.
-*
-* @returns {Promise<InitOutput>}
-*/
-export default function __wbg_init (module_or_path?: { module_or_path: InitInput | Promise<InitInput> } | InitInput | Promise<InitInput>): Promise<InitOutput>;
+ * If `module_or_path` is {RequestInfo} or {URL}, makes a request and
+ * for everything else, calls `WebAssembly.instantiate` directly.
+ *
+ * @param {{ module_or_path: InitInput | Promise<InitInput> }} module_or_path - Passing `InitInput` directly is deprecated.
+ *
+ * @returns {Promise<InitOutput>}
+ */
+export default function __wbg_init(
+  module_or_path?:
+    | { module_or_path: InitInput | Promise<InitInput> }
+    | InitInput
+    | Promise<InitInput>,
+): Promise<InitOutput>;
